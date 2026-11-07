@@ -3,7 +3,7 @@ Interactive Space Museum AR project featuring planetary animations, 3D models, a
 
 
 ## Git hub link
-https://github.com/sanadi532/little- -space-museum-ar.git
+https://github.com/sanadi532/little--space-museum-ar.git
 
 ## Project Description
 
