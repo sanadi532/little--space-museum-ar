@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Space Museum AR</title>
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+    <!-- AR.js -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+    <!--  CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Status Banner -->
+    <div id="statusBanner" class="lost">
+      Marker Lost! Point your camera at the Hiro marker.
+    </div>
+
+    <!-- AR Scene -->
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+      renderer="antialias: true; alpha: true;"
+    >
+      <a-assets>
+        <img
+          id="earthTexture"
+          src="textures/earth.jpg"
+          crossorigin="anonymous"
+        />
+
+        <a-asset-item id="astronautModel" src="models/astronaut.glb">
+        </a-asset-item>
+      </a-assets>
+
+      <a-marker preset="hiro" id="hiroMarker" emitevents="true">
+        <!-- Museum title -->
+        <a-text
+          value="Little Space Museum"
+          position="0 1.8 0"
+          align="center"
+          color="#FFFFFF"
+          width="10"
+        >
+        </a-text>
+
+        <!-- SUN -->
+        <a-entity position="-1 0.6 0">
+          <!-- Main Sun -->
+          <a-sphere
+            radius="0.4"
+            material="color: #FFB300;
+                  emissive: #FF8C00;
+                  emissiveIntensity: 0.7;
+                  roughness: 1"
+            animation="property: rotation;
+                   to: 0 360 0;
+                   loop: true;
+                   dur: 10000"
+          >
+          </a-sphere>
+
+          <!-- Outer glow -->
+          <a-sphere
+            radius="0.48"
+            material="color: #FFD54F;
+                  transparent: true;
+                  opacity: 0.2;
+                  side: double"
+          >
+          </a-sphere>
+        </a-entity>
+
+        <!-- EARTH -->
+        <a-sphere
+          id="earth"
+          class="clickable"
+          position="0 0.6 0"
+          radius="0.3"
+          material="src: #earthTexture; color: #FFFFFF; roughness: 1"
+          animation="property: rotation;
+               to: 0 360 0;
+               loop: true;
+               dur: 10000"
+        >
+        </a-sphere>
+
+        <!-- SATURN -->
+        <a-entity id="saturn" position="1 0.6 0">
+          <!-- Saturn planet -->
+          <a-sphere
+            id="saturnPlanet"
+            class="clickable"
+            saturn-scale-toggle
+            radius="0.32"
+            material="color: #D9B477; roughness: 1"
+          >
+          </a-sphere>
+
+          <!-- Inner ring -->
+          <a-torus
+            radius="0.43"
+            radius-tubular="0.025"
+            rotation="75 0 0"
+            color="#C49A62"
+          >
+          </a-torus>
+
+          <!-- Middle ring -->
+          <a-torus
+            radius="0.52"
+            radius-tubular="0.035"
+            rotation="75 0 0"
+            color="#E8D0A0"
+          >
+          </a-torus>
+
+          <!-- Outer ring -->
+          <a-torus
+            radius="0.62"
+            radius-tubular="0.018"
+            rotation="75 0 0"
+            color="#A98759"
+          >
+          </a-torus>
+        </a-entity>
+
+        <!-- ROCKET -->
+        <a-entity
+          position="0 0.5 -1"
+          animation="property: position; to: 0 0.8 -1; dir: alternate; loop: true; dur: 1800"
+        >
+          <!-- Rocket body -->
+          <a-cylinder
+            position="0 0 0"
+            radius="0.15"
+            height="0.7"
+            color="#E8E8E8"
+          >
+          </a-cylinder>
+
+          <!-- Rocket nose -->
+          <a-cone
+            position="0 0.5 0"
+            radius-bottom="0.15"
+            height="0.35"
+            color="#E53935"
+          >
+          </a-cone>
+
+          <!-- Left fin -->
+          <a-box
+            position="-0.17 -0.22 0"
+            width="0.12"
+            height="0.3"
+            depth="0.08"
+            color="#E53935"
+          >
+          </a-box>
+
+          <!-- Right fin -->
+          <a-box
+            position="0.17 -0.22 0"
+            width="0.12"
+            height="0.3"
+            depth="0.08"
+            color="#E53935"
+          >
+          </a-box>
+
+          <!-- Rocket window -->
+          <a-cylinder
+            position="0 0.12 0.153"
+            radius="0.07"
+            height="0.02"
+            rotation="90 0 0"
+            color="#42C5F5"
+          >
+          </a-cylinder>
+
+          <!-- Rocket fire -->
+          <a-cone
+            position="0 -0.48 0"
+            radius-bottom="0.1"
+            radius-top="0"
+            height="0.3"
+            rotation="180 0 0"
+            color="#FF9800"
+          >
+          </a-cone>
+        </a-entity>
+        <!-- ASTRONAUT -->
+        <a-entity
+          id="astronaut"
+          gltf-model="#astronautModel"
+          position="0 0 0.9"
+          scale="0.005 0.005 0.005"
+        >
+        </a-entity>
+      </a-marker>
+
+      <!-- CAMERA -->
+      <a-entity
+        camera
+        cursor="rayOrigin: mouse"
+        raycaster="objects: .clickable"
+      >
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
