@@ -51,5 +51,5 @@ Licence: CC Attribution - https://creativecommons.org/licenses/by/4.0/
 3. Allow camera access.
 4. Point the camera at the Hiro marker.
 
-##git hub link
+## Git hub link
 https://github.com/sanadi532/little--space-museum-ar.git
