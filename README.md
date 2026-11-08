@@ -37,8 +37,9 @@ interactive miniature Space Museum containing
 
 Model Name: Astronaut
 Creator: Diamondas
-Source: Direct link - https://skfb.ly/6WMLP
-Licence: CC Attribution - https://creativecommons.org/licenses/by/4.0/
+Source: Direct link - `https://skfb.ly/6WMLP`
+
+Licence: CC Attribution - `https://creativecommons.org/licenses/by/4.0/`
 
 ## Group Members
 
